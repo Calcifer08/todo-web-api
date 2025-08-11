@@ -1,4 +1,4 @@
-namespace TodoWebApi.Application.DTOs;
+namespace TodoWebApi.Api.DTOs;
 
 public class TodoDto
 {

@@ -1,11 +1,12 @@
 using Microsoft.AspNetCore.Http;
+using TodoWebApi.Application.DTOs;
 using TodoWebApi.Domain.Entities;
 
 namespace TodoWebApi.Application.Interfaces;
 
 public interface ITodoService
 {
-    Task<List<Todo>> GetAllAsync();
+    Task<List<TodoViewDto>> GetAllAsync();
     Task<Todo?> GetByIdAsync(int id);
     Task<Todo> CreateAsync(Todo todo);
     Task UpdateAsync(Todo newTodo);

@@ -8,11 +8,11 @@ using Microsoft.Net.Http.Headers;
 using Microsoft.OpenApi.Models;
 using TodoWebApi.Api.Middleware;
 using TodoWebApi.Api.Swagger;
-using TodoWebApi.Application.DTOs;
+using TodoWebApi.Api.DTOs;
 using TodoWebApi.Application.Interfaces;
-using TodoWebApi.Application.MappingProfiles;
+using TodoWebApi.Api.MappingProfiles;
 using TodoWebApi.Application.Services;
-using TodoWebApi.Application.Validators;
+using TodoWebApi.Api.Validators;
 using TodoWebApi.Domain.Entities;
 using TodoWebApi.Infrastructure.Data;
 using TodoWebApi.Infrastructure.Services;
@@ -105,6 +105,13 @@ namespace TodoWebApi.Api
         options.OperationFilter<SecurityRequirementsOperationFilter>();
       });
       builder.Services.AddScoped<IFileStorageService, LocalFileStorageService>();
+      builder.Services.AddStackExchangeRedisCache(opt =>
+      {
+        opt.Configuration = builder.Configuration["Cache:ConnectionString"];
+        opt.InstanceName = "TodoApi_";
+      });
+
+
 
       var app = builder.Build();
 

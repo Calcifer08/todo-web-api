@@ -2,6 +2,7 @@ using AutoMapper;
 using FluentValidation;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using TodoWebApi.Api.DTOs;
 using TodoWebApi.Application.DTOs;
 using TodoWebApi.Application.Interfaces;
 using TodoWebApi.Domain.Entities;
@@ -28,8 +29,7 @@ public class TodosController : ControllerBase
     public async Task<IActionResult> GetAllAsync()
     {
         var todos = await _todoService.GetAllAsync();
-        var todosViewDto = _mapper.Map<List<TodoViewDto>>(todos);
-        return Ok(todosViewDto);
+        return Ok(todos);
     }
 
     // /api/todos/1

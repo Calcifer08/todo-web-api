@@ -1,7 +1,7 @@
-using TodoWebApi.Application.DTOs;
+using TodoWebApi.Api.DTOs;
 using FluentValidation;
 
-namespace TodoWebApi.Application.Validators;
+namespace TodoWebApi.Api.Validators;
 
 public class TodoDtoValidator : AbstractValidator<TodoDto>
 {

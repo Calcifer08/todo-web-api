@@ -2,7 +2,7 @@ using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using TodoWebApi.Application.DTOs;
+using TodoWebApi.Api.DTOs;
 using TodoWebApi.Application.Interfaces;
 using TodoWebApi.Domain.Entities;
 

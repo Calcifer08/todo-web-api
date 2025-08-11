@@ -1,6 +1,6 @@
-namespace TodoWebApi.Application.DTOs;
+namespace TodoWebApi.Api.DTOs;
 
-public class AuthResponseDto
+public class RefreshTokenDto
 {
     public string AccessToken { get; set; } = "";
     public string RefreshToken { get; set; } = "";

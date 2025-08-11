@@ -1,8 +1,9 @@
 using AutoMapper;
+using TodoWebApi.Api.DTOs;
 using TodoWebApi.Application.DTOs;
 using TodoWebApi.Domain.Entities;
 
-namespace TodoWebApi.Application.MappingProfiles;
+namespace TodoWebApi.Api.MappingProfiles;
 
 public class TodoProfile : Profile
 {
