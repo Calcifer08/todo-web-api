@@ -106,12 +106,14 @@ public class AuthController : ControllerBase
         }
 
         var principal = _tokenService.GetPrincipalFromExpiredToken(refreshTokenDto.AccessToken);
-        if (principal?.Identity?.Name is null)
+        var userIdClaim = principal?.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier);
+        if (userIdClaim is null)
         {
-            return BadRequest("Недопустимый токен доступа или обновления");
+            return BadRequest("Недопустимый токен доступа");
         }
 
-        var userId = principal.Claims.First(c => c.Type == ClaimTypes.NameIdentifier).Value;
+        var userId = userIdClaim.Value;
+
         var user = await _userManager.FindByIdAsync(userId);
 
         if (user == null || user.RefreshToken != refreshTokenDto.RefreshToken || user.RefreshTokenExpiryTime <= DateTime.UtcNow)
