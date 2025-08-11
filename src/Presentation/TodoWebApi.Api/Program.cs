@@ -16,6 +16,7 @@ using TodoWebApi.Api.Validators;
 using TodoWebApi.Domain.Entities;
 using TodoWebApi.Infrastructure.Data;
 using TodoWebApi.Infrastructure.Services;
+using Npgsql.EntityFrameworkCore;
 
 namespace TodoWebApi.Api
 {
@@ -28,7 +29,7 @@ namespace TodoWebApi.Api
       builder.Services.AddControllers();
 
       builder.Services.AddDbContext<IApplicationDbContext, TodoDbContext>(options =>
-          options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+          options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
       builder.Services.AddIdentity<ApiUser, IdentityRole>(options =>
       {
