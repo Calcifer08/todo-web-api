@@ -15,6 +15,7 @@ using TodoWebApi.Application.Services;
 using TodoWebApi.Application.Validators;
 using TodoWebApi.Domain.Entities;
 using TodoWebApi.Infrastructure.Data;
+using TodoWebApi.Infrastructure.Services;
 
 namespace TodoWebApi.Api
 {
@@ -103,7 +104,7 @@ namespace TodoWebApi.Api
         });
         options.OperationFilter<SecurityRequirementsOperationFilter>();
       });
-
+      builder.Services.AddScoped<IFileStorageService, LocalFileStorageService>();
 
       var app = builder.Build();
 

@@ -8,4 +8,8 @@ public class Todo
 
     public string? UserId { get; set; }
     public ApiUser? User { get; set; }
+
+    public string? AttachmentUrl { get; set; }
+    public string? StoredFileName { get; set; }
+    public string? OriginalFileName { get; set; }
 }

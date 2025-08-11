@@ -98,4 +98,39 @@ public class TodosController : ControllerBase
         await _todoService.DeleteAsync(todoToDelete);
         return NoContent();
     }
+
+    // /api/todos/1/attachment
+    [HttpPost("{id:int}/attachment")]
+    public async Task<IActionResult> UploadAttachmentAsync(int id, IFormFile file)
+    {
+        if (file == null || file.Length == 0)
+        {
+            return BadRequest("Файл не был предоставлен");
+        }
+
+        var url = await _todoService.AddAttachmentAsync(id, file);
+
+        if (url is null)
+        {
+            return NotFound();
+        }
+
+        return Ok(new { AttachmentUrl = url });
+    }
+
+
+    // /api/todos/1/attachment
+    [HttpDelete("{id:int}/attachment")]
+    public async Task<IActionResult> DeleteAttachmentAsync(int id)
+    {
+        var todo = await _todoService.GetByIdAsync(id);
+        if (todo is null)
+        {
+            return NotFound();
+        }
+
+        await _todoService.DeleteAttachmentAsync(id);
+
+        return NoContent();
+    }
 }

@@ -16,4 +16,8 @@
     <ProjectReference Include="..\..\Core\TodoWebApi.Application\TodoWebApi.Application.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
 </Project>

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TodoWebApi.Infrastructure.Data;
 
@@ -10,9 +11,11 @@ using TodoWebApi.Infrastructure.Data;
 namespace TodoWebApi.Infrastructure.Migrations
 {
     [DbContext(typeof(TodoDbContext))]
-    partial class TodoDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250811105023_AddAttachmentFieldsToTodo")]
+    partial class AddAttachmentFieldsToTodo
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.8");
@@ -220,9 +223,6 @@ namespace TodoWebApi.Infrastructure.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
-
-                    b.Property<string>("AttachmentUrl")
-                        .HasColumnType("TEXT");
 
                     b.Property<bool>("IsComplete")
                         .HasColumnType("INTEGER");
