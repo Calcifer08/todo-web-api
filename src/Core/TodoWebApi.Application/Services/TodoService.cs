@@ -56,7 +56,7 @@ public class TodoService : ITodoService
 
     await _cache.SetStringAsync(cacheKey, serializedTodos, cacheOptions);
 
-    return _mapper.Map<List<TodoViewDto>>(todosDto);
+    return todosDto;
   }
 
   public async Task<Todo?> GetByIdAsync(int id)
