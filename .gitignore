@@ -2,6 +2,7 @@
 [Bb]in/
 [Bb]uild/
 [Oo]bj/
+[Pp]ublish_output/
 
 # Сгенерированные NuGet-пакеты
 [Pp]ackages/
@@ -40,6 +41,8 @@ Properties/launchSettings.json
 # Секреты
 secrets.json
 appsettings.Development.json
+.env
+*.pem
 
 # Прочее
 *.log

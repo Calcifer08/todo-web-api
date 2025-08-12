@@ -16,7 +16,8 @@ using TodoWebApi.Api.Validators;
 using TodoWebApi.Domain.Entities;
 using TodoWebApi.Infrastructure.Data;
 using TodoWebApi.Infrastructure.Services;
-using Npgsql.EntityFrameworkCore;
+using TodoWebApi.Api.Extensions;
+using Microsoft.AspNetCore.HttpOverrides;
 
 namespace TodoWebApi.Api
 {
@@ -116,11 +117,20 @@ namespace TodoWebApi.Api
 
       var app = builder.Build();
 
+      var forwardedHeadersOptions = new ForwardedHeadersOptions
+      {
+        ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+      };
+      app.UseForwardedHeaders(forwardedHeadersOptions);
+
+      app.ApplyMigrations();
+
       if (app.Environment.IsDevelopment())
       {
         app.UseDeveloperExceptionPage();
         app.UseSwagger();
         app.UseSwaggerUI();
+        app.UseHttpsRedirection();
       }
       else
       {
@@ -134,7 +144,6 @@ namespace TodoWebApi.Api
         });
       }
 
-      app.UseHttpsRedirection();
       app.UseDefaultFiles();
       app.UseStaticFiles();
       app.UseCors("WebAppPolicy");
